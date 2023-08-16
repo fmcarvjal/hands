@@ -1,0 +1,35 @@
+import { useState, useEffect, useRef } from "react";
+import manzana from "./assets/imagen/manzana.png";
+import naranja from "./assets/imagen/naranja.png";
+import {io} from "socket.io-client"
+
+
+import "./assets/styles/global.css";
+
+function App() {
+  const [led, setLed] = useState(false);
+  const [socket] = useState(io("http://localhost:4444"))
+
+  const image = useRef(null);
+
+  const handleled = () => {
+    setLed(() => !led);
+    led
+      ? image.current.setAttribute("src", manzana)
+      : image.current.setAttribute("src", naranja);
+  };
+
+  return (
+    <div className="app">
+      <img onClick={handleled} ref={image} src={manzana} alt="manzana" />
+    </div>
+  );
+}
+
+export default App;
+
+
+
+--------------------------------------
+
+https://github.com/tolgacesur/johnny-five-socket-io-arduino/blob/master/app.js

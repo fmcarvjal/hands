@@ -1,0 +1,9 @@
+https://www.youtube.com/watch?v=LdMlIdeDfzs&t=316s
+
+
+
+https://github.com/tolgacesur/johnny-five-socket-io-arduino/blob/master/app.js
+
+
+
+node ------------https://www.youtube.com/watch?v=OVESuyVoPkI
