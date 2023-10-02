@@ -63,7 +63,9 @@
 
   .button-blue{
     background-color: blue;
-    color: black;
+    color: white;
+    left: 20px;
+    
   }
   
   .hand-closed .button {
@@ -115,3 +117,6 @@
       transition: width 0.3s ease;
     }
     
+    body{
+      background-color: aquamarine;
+    }

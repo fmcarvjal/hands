@@ -13,6 +13,9 @@ function App() {
   };
   const [progressWidth, setProgressWidth] = useState(0);
 
+  //--------------------------------------------------------------------------
+  
+
   //---------------------------------------------------------------------------
   const [correctCount, setCorrectCount] = useState(0); // Contador de respuestas correctas
   const [messageCount, setMessageCount] = useState(0); // Contador de mensajes de voz
@@ -49,13 +52,11 @@ function App() {
         } else {
           clearInterval(interval); // Detener el intervalo después de 10 mensajes
           setEnableStartButton(true); // Habilitar el botón "Iniciar Juego"
-          speakText(
-            "Muy buen trabajo."
-          );
-          setGameStarted(false)
-          setMessageCount(0)
-          setCorrectCount(0)
-          //window.location.reload();
+          speakText("Muy buen trabajo.");
+          setGameStarted(false);
+          setMessageCount(0);
+          setCorrectCount(0);
+          window.location.reload();
         }
       }, 5000); // Repetir cada 5 segundos
       if (messageCount === 0) {
@@ -163,7 +164,9 @@ function App() {
       if (index === expectedButtonIndex) {
         setCorrectCount((prevCount) => prevCount + 1);
         setExpectedButtonIndex(null); // Reinicia el botón esperado
-        setProgressWidth((prevWidth) => (prevWidth + 10 <= 100 ? prevWidth + 10 : 100)); // Incrementa el ancho de la barra
+        setProgressWidth((prevWidth) =>
+          prevWidth + 10 <= 100 ? prevWidth + 10 : 100
+        ); // Incrementa el ancho de la barra
       }
 
       setTimeout(() => {
@@ -198,10 +201,13 @@ function App() {
   return (
     <div className={`app-container ${handClosed ? "hand-closed" : ""}`}>
       <div className="video-container">
-        <p>Correctos: {correctCount}</p>
-        <p>Mensajes Repetidos: {messageCount}</p>
+        <p>Correctos: {correctCount} / {messageCount}</p>
+        
         <video ref={videoRef} autoPlay={true} />
+       
+        
       </div>
+      
 
       <div className="progress-bar">
         <div
@@ -264,18 +270,24 @@ function App() {
           >
             <h2>ABAJO</h2>
           </button>
+
+          
         </div>
       </div>
+      <div>
       {!gameStarted && (
-        <div className="start-button">
-          <button
-            onClick={handleStartGame}
-            disabled={!enableStartButton} // Deshabilita el botón si no está permitido
-          >
-            Iniciar Juego
-          </button>
-        </div>
-      )}
+              <button
+                className={`button ${
+                  buttonColors[1] === "Verde" ? "button-blue" : "button-blue" 
+                }`}
+                onClick={handleStartGame}
+                disabled={!enableStartButton} // Deshabilita el botón si no está permitido
+              >
+                <h2>INICIAR</h2>
+              </button>
+            )}
+            
+          </div>
     </div>
   );
 }
